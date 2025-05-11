@@ -7,7 +7,7 @@ import base64
 from helper import *
 
 # Initialize Alpaca Trading Client
-trading_client = TradingClient(api_key, api_secret, paper=True)
+trading_client = TradingClient(api_key, api_secret, paper=(not is_prod))
 
 # Initialize Flask app
 app = Flask(__name__)

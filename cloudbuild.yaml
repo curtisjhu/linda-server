@@ -1,0 +1,19 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/funnyscar/linda-server-service', '.']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/funnyscar/linda-server-service']
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['run', 'deploy', 'linda-server-service',
+           '--image', 'gcr.io/funnyscar/linda-server-service',
+           '--platform', 'managed',
+           '--region', 'us-central1',
+           '--allow-unauthenticated']
+images:
+  - 'gcr.io/funnyscar/linda-server-service'
+
+serviceAccount: 'firebase-adminsdk-r5s26@funnyscar.iam.gserviceaccount.com'
+options:
+  logging: CLOUD_LOGGING_ONLY
