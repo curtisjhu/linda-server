@@ -1,8 +1,5 @@
 from flask import Flask, jsonify, render_template_string
 from alpaca.trading.client import TradingClient
-import matplotlib.pyplot as plt
-import io
-import base64
 
 from helper import *
 
@@ -30,19 +27,6 @@ def home():
             }
             for position in positions
         ]
-
-        # Generate pie chart
-        labels = [position['symbol'] for position in positions_data]
-        sizes = [position['market_value'] for position in positions_data]
-        plt.figure(figsize=(6, 6))
-        plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
-        plt.title('Portfolio Distribution')
-        # Save the plot to a BytesIO object
-        img = io.BytesIO()
-        plt.savefig(img, format='png')
-        img.seek(0)
-        plot_url = base64.b64encode(img.getvalue()).decode()
-        plt.close()
 
         # HTML template for rendering the table and pie chart
         html_template = """
