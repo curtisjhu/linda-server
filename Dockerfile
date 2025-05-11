@@ -1,5 +1,5 @@
 # Use the official Python image as the base image
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 # Set the working directory in the container
 WORKDIR /app
@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . ./
 
 # Expose the port the Flask app runs on
-EXPOSE 8080
+EXPOSE 5000
 
 # Set the environment variables for Flask
 ENV FLASK_APP=main.py
