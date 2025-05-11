@@ -105,7 +105,7 @@ def home():
         """
 
         # Render the HTML template with positions data and plot URL
-        return render_template_string(html_template, positions=positions_data, account=account, plot_url=plot_url)
+        return render_template_string(html_template, positions=positions_data, account=account)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
