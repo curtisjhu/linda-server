@@ -4,7 +4,7 @@ from alpaca.trading.client import TradingClient
 from helper import *
 
 # Initialize Alpaca Trading Client
-trading_client = TradingClient(api_key, api_secret, paper=(not is_prod))
+trading_client = TradingClient(api_key, api_secret, paper=True)
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -110,4 +110,4 @@ def home():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=8080)
